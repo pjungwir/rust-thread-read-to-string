@@ -1,0 +1,8 @@
+[package]
+name = "thread-read-to-string"
+version = "0.1.0"
+authors = ["Paul A. Jungwirth <pj@illuminatedcomputing.com>"]
+
+[dependencies]
+hyper = "0.10.5"
+
