@@ -25,14 +25,28 @@ and then print out the buffer back on the main thread?
 
 This repository shows three examples for getting the webpage:
 
-1. With no timeout.
+1. With no timeout (calling `get_url`).
 
-2. With a timeout just on `send`.
+2. With a timeout just on `send` (calling `get_url_with_timeout_1`).
 
-3. With a timeout on the whole thing.
+3. With a timeout on the whole thing (called `get_url_with_timeout_2`).
 
 If you take out 3, it all compiles and runs.
 What can I change about 3 to make that work too?
 
+I've [asked Stackoverflow](http://stackoverflow.com/questions/42730169/fill-a-string-buffer-from-a-thread) for help,
+and using the suggestions there, I have 3 solutions,
+all involving Arc + Mutex.
+
+4. Use an Arc<Mutex<String>> inside the function, then return a copy of the string (`get_url_with_timeout_3`).
+
+5. Use an Arc<Mutex<String>> inside the function, then return it, and take the lock outside (`get_url_with_timeout_4`).
+
+6. Create an Arc<Mutex<String>> outside the function, pass it as an argument, and afterwards take a lock on it (`get_url_with_timeout_5`).
+
+I like 5 for not requiring a copy, and I like 6 even more for letting the caller control the buffer initialization.
+
+The latest commit on this repo now shows the invalid approach as commented-out,
+and working code for the three solutions.
 
 
