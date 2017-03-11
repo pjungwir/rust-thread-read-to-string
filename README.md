@@ -39,11 +39,11 @@ and using the suggestions there, I have 3 solutions,
 all involving Arc + Mutex.
 
 <ol start="4">
-  <li>Use an Arc&lt;Mutex&lt;String>> inside the function, then return a copy of the string (`get_url_with_timeout_3`).
+  <li><p>Use an Arc&lt;Mutex&lt;String>> inside the function, then return a copy of the string (<code>get_url_with_timeout_3</code>).</p></li>
 
-  <li>Use an Arc&lt;Mutex&lt;String>> inside the function, then return it, and take the lock outside (`get_url_with_timeout_4`).
+  <li><p>Use an Arc&lt;Mutex&lt;String>> inside the function, then return it, and take the lock outside (<code>get_url_with_timeout_4</code>).</p></li>
 
-  <li>Create an Arc&lt;Mutex&lt;String>> outside the function, pass it as an argument, and afterwards take a lock on it (`get_url_with_timeout_5`).
+  <li><p>Create an Arc&lt;Mutex&lt;String>> outside the function, pass it as an argument, and afterwards take a lock on it (<code>get_url_with_timeout_5</code>).</p></li>
 </ol>
 
 I like 5 for not requiring a copy, and I like 6 even more for letting the caller control the buffer initialization.
